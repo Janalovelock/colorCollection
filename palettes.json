@@ -1,0 +1,29 @@
+[
+    {
+      "title": "Palette 1",
+      "description": "A vibrant palette inspired by nature.",
+      "colors": ["#FF5733", "#FFC300", "#DAF7A6", "#9AECDB", "#5D6D7E"],
+      "tags": ["nature", "vibrant", "colorful"],
+      "date_created": "2024-05-22",
+      "date_modified": "2024-05-22",
+      "favorite": true
+    },
+    {
+      "title": "Palette 2",
+      "description": "A calming palette reminiscent of a sunset.",
+      "colors": ["#FDEDEC", "#FADBD8", "#F5B7B1", "#F1948A", "#EC7063"],
+      "tags": ["sunset", "calm", "warm"],
+      "date_created": "2024-05-21",
+      "date_modified": "2024-05-21",
+      "favorite": false
+    },
+    {
+      "title": "Palette 3",
+      "description": "A minimalist palette with subtle tones.",
+      "colors": ["#FFFFFF", "#EAECEE", "#D5DBDB", "#BFC9CA", "#AAB7B8"],
+      "tags": ["minimalist", "neutral", "simple"],
+      "date_created": "2024-05-20",
+      "date_modified": "2024-05-20",
+      "favorite": true
+    }
+  ]

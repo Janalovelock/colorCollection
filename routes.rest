@@ -1,0 +1,9 @@
+//get all
+GET 
+###
+//get one
+GET 
+###
+//create 
+POST 
+###
