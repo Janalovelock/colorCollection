@@ -1,10 +1,60 @@
 //get all
-###
 GET http://localhost:3000/palettes
 ###
 //get one
-GET http://localhost:3000/palettes/
+GET http://localhost:3000/palettes/664e533854ca9558f9fb56d2
 ###
 //create 
-POST 
+POST http://localhost:3000/palettes
+Content-Type: application/json
+
+{
+  "title": "Hip Swampy",
+  "description": "Get down and dirty but also fresh and clean? ",
+  "colors": [
+    "#a49e8d",
+    "#504135",
+    "#689689",
+    "#b2e6d4",
+    "#83e8ba"
+  ],
+  "tags": [
+    "minimalist",
+    "neutral",
+    "simple"
+  ],
+  "date_created": "2024-05-20",
+  "date_modified": "2024-05-20",
+  "favorite": false
+}
 ###
+//update 
+PUT http://localhost:3000/palettes/664ebbb44971cbbc5ad9c09e
+Content-Type: application/json
+
+{
+  "title": "Hip Swamp extra",
+  "description": "Get down and dirty but also fresh and clean? ",
+  "colors": [
+    "#a49e8d",
+    "#504135",
+    "#689689",
+    "#b2e6d4",
+    "#83e8ba"
+  ],
+  "tags": [
+    "minimalist",
+    "neutral",
+    "simple"
+  ],
+  "date_created": "2024-05-20",
+  "date_modified": "2024-05-20",
+  "favorite": false
+}
+###
+//delete
+DELETE http://localhost:3000/palettes/664ebbb44971cbbc5ad9c09e
+
+
+
+// ********* RENDER LINKS ********* //

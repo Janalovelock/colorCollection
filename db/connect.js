@@ -12,6 +12,7 @@ const initDb = (callback) => {
   MongoClient.connect(process.env.MONGODB_URI)
     .then((client) => {
       _db = client.db(); // Access the database object from the client
+      console.log("MongoDB Connected to database:", _db.databaseName);
       callback(null, _db);
     })
     .catch((err) => {
