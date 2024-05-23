@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const uri = process.env.MONGODB_URI;
 
-const connectDB = async () => {
+const connectToDatabase = async () => {
     try {
         const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('MongoDB Connected');
@@ -15,4 +15,4 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB;
+module.exports = { connectToDatabase }; // Export as an object

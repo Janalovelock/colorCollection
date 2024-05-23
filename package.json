@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "generate-swagger": "swagger-autogen --input . --output swagger.json"
+    "generate-swagger": "swagger-autogen --input . --output swagger.json",
+    "swagger": "node ./swaggerconfig.js"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +20,10 @@
     "passport": "^0.7.0",
     "passport-github": "^1.1.0",
     "passport-google-oauth20": "^2.0.0",
-    "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
   }
 }
