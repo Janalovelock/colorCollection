@@ -4,21 +4,21 @@ const MongoClient = require("mongodb").MongoClient;
 
 let _db;
 
-const initDb = async () => {
-  try {
-    if (_db) {
-      console.log("Db is already initialized!");
-      return _db;
-    }
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
-    _db = client.db();
-    console.log("MongoDB Connected");
-    return _db;
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-    throw error;
+const initDb = (callback) => {
+  if (_db) {
+    console.log("Db is already initialized!");
+    return callback(null, _db);
   }
+  MongoClient.connect(process.env.MONGODB_URI)
+    .then((client) => {
+      _db = client.db(); // Access the database object from the client
+      callback(null, _db);
+    })
+    .catch((err) => {
+      callback(err);
+    });
 };
+
 
 const getDb = () => {
   if (!_db) {
