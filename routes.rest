@@ -1,8 +1,9 @@
 //get all
-GET 
+###
+GET http://localhost:3000/palettes
 ###
 //get one
-GET 
+GET http://localhost:3000/palettes/
 ###
 //create 
 POST 

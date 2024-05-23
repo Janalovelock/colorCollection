@@ -1,18 +1,33 @@
-// db/connect.js
-const { MongoClient } = require('mongodb');
-require('dotenv').config();
+const dotenv = require("dotenv");
+dotenv.config();
+const MongoClient = require("mongodb").MongoClient;
 
-const uri = process.env.MONGODB_URI;
+let _db;
 
-const connectToDatabase = async () => {
-    try {
-        const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log('MongoDB Connected');
-        return client.db();
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-        process.exit(1); // Exit process with failure
+const initDb = async () => {
+  try {
+    if (_db) {
+      console.log("Db is already initialized!");
+      return _db;
     }
+    const client = await MongoClient.connect(process.env.MONGODB_URI);
+    _db = client.db();
+    console.log("MongoDB Connected");
+    return _db;
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
+  }
 };
 
-module.exports = { connectToDatabase }; // Export as an object
+const getDb = () => {
+  if (!_db) {
+    throw Error("Db not initialized");
+  }
+  return _db;
+};
+
+module.exports = {
+  initDb,
+  getDb,
+};

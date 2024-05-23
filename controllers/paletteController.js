@@ -1,47 +1,52 @@
 // controllers/paletteController.js
-const Palette = require("../models/paletteModel");
+const paletteModel = require("../models/paletteModel");
 
-const paletteController = {
-  getAll: async (req, res) => {
+async function getAll(req, res) {
     try {
-      const palettes = await Palette.find();
-      res.json(palettes);
+        const palettes = await paletteModel.getPalettes();
+        res.json(palettes);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  },
+}
 
-    Single: async (req, res) => {
+async function getSingle(req, res) {
     const id = req.params.id;
     try {
-      const palette = await Palette.findById(id);
-      if (!palette) {
-        return res.status(404).json({ message: "Palette not found" });
-      }
-      res.json(palette);
+        const palette = await paletteModel.getPaletteById(id);
+        if (!palette) {
+            res.status(404).json({ message: "Palette not found" });
+            return;
+        }
+        res.json(palette);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  },
+}
 
-  create: async (req, res) => {
-    const { title, description, colors, tags } = req.body;
+async function create(req, res) {
+    const palette = req.body;
     try {
-      const palette = new Palette({
-        title,
-        description,
-        colors,
-        tags,
-        date_created: new Date(),
-        date_modified: new Date(),
-        favorite: false // Set favorite to false by default
-      });
-      const newPalette = await palette.save();
-      res.status(201).json(newPalette);
+        const createdPalette = await paletteModel.createPalette(palette);
+        res.status(201).json(createdPalette.ops[0]);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  }
-};
+}
 
-module.exports = paletteController;
+async function update(req, res) {
+    const id = req.params.id;
+    const palette = req.body;
+    try {
+        const updatedPalette = await paletteModel.updatePalette(id, palette);
+        if (updatedPalette.modifiedCount === 0) {
+            res.status(404).json({ message: "Palette not found" });
+            return;
+        }
+        res.json({ message: "Palette updated successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+module.exports = { getAll, getSingle, create, update };

@@ -1,8 +1,9 @@
 // server.js
 const express = require('express');
-const { connectToDatabase } = require('./db/connect');
+const mongodb = require("./db/connect");
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger_output.json'); // Assuming you have a swagger_output.json file
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,9 +17,14 @@ app.use('/', require('./routes/index'));
 // Swagger UI route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Connect to MongoDB
-connectToDatabase().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-});
+// Initialize MongoDB connection
+mongodb.initDb((err, mongodb) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // Start the server
+      app.listen(PORT, () => {
+        console.log(`Connected to DB and listening on ${PORT}`);
+      });
+    }
+  });
