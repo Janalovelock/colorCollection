@@ -1,0 +1,12 @@
+{
+    "esversion": 8,
+    "node": true,
+    "browser": true,
+    "globals": {
+      "jQuery": true
+    },
+    "unused": ["vars", "strict"],
+    "undef": true,
+    "curly": true,
+    "eqeqeq": true
+  }

@@ -2,7 +2,7 @@
 GET http://localhost:3000/palettes
 ###
 //get one
-GET http://localhost:3000/palettes/664e533854ca9558f9fb56d2
+GET http://localhost:3000/palettes/664e533854ca9558f9fb56d0
 ###
 //create 
 POST http://localhost:3000/palettes
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 ###
 //update 
-PUT http://localhost:3000/palettes/664ebbb44971cbbc5ad9c09e
+PUT http://localhost:3000/palettes/664f93086a555f9ee7350da4
 Content-Type: application/json
 
 {
@@ -53,8 +53,63 @@ Content-Type: application/json
 }
 ###
 //delete
-DELETE http://localhost:3000/palettes/664ebbb44971cbbc5ad9c09e
-
-
-
+DELETE http://localhost:3000/palettes/664f93086a555f9ee7350da4
+###
 // ********* RENDER LINKS ********* //
+
+//get all
+GET https://colorcollection.onrender.com/palettes
+###
+//get one
+GET https://colorcollection.onrender.com/palettes/664e533854ca9558f9fb56d2
+###
+//create 
+POST https://colorcollection.onrender.com/palettes
+Content-Type: application/json
+
+{
+  "title": "Hip Swampy",
+  "description": "Get down and dirty but also fresh and clean? ",
+  "colors": [
+    "#a49e8d",
+    "#504135",
+    "#689689",
+    "#b2e6d4",
+    "#83e8ba"
+  ],
+  "tags": [
+    "minimalist",
+    "neutral",
+    "simple"
+  ],
+  "date_created": "2024-05-20",
+  "date_modified": "2024-05-20",
+  "favorite": false
+}
+###
+//update 
+PUT https://colorcollection.onrender.com/palettes/664ebeb0ed6712f41c7a7245
+Content-Type: application/json
+
+{
+  "title": "Hip Swamp extra",
+  "description": "Get down and dirty but also fresh and clean? ",
+  "colors": [
+    "#a49e8d",
+    "#504135",
+    "#689689",
+    "#b2e6d4",
+    "#83e8ba"
+  ],
+  "tags": [
+    "minimalist",
+    "neutral",
+    "simple"
+  ],
+  "date_created": "2024-05-20",
+  "date_modified": "2024-05-20",
+  "favorite": false
+}
+###
+//delete
+DELETE https://colorcollection.onrender.com/palettes/664ebeb0ed6712f41c7a7245

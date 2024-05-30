@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "npm run lint && node server.js",
     "generate-swagger": "swagger-autogen --input . --output swagger.json",
-    "swagger": "node ./swaggerconfig.js"
+    "swagger": "node ./swaggerconfig.js",
+    "lint": "jshint *.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
+    "jshint": "^2.13.6",
     "swagger-autogen": "^2.23.7"
   }
 }
