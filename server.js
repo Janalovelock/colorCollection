@@ -1,5 +1,5 @@
-// server.js
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongodb = require("./db/connect");
 const swaggerUi = require('swagger-ui-express');
@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
-app.use(express.json());
 
 // Routes
 const indexRouter = require('./routes/index');
