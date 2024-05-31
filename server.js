@@ -1,25 +1,22 @@
 // server.js
 const express = require('express');
-
-const app = express();
 const bodyParser = require("body-parser");
 const mongodb = require("./db/connect");
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger_output.json'); // Assuming you have a swagger_output.json file
+const swaggerDocument = require('./swagger_output.json');
 require('dotenv').config();
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.json());
-// Middleware to parse JSON bodies
 app.use(bodyParser.json());
+app.use(express.json());
 
 // Routes
-app.use('/', require('./routes/index'));
-
-// Swagger UI route
+const indexRouter = require('./routes/index');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/', indexRouter);
 
 // Initialize MongoDB connection
 mongodb.initDb((err, mongodb) => {
@@ -31,4 +28,4 @@ mongodb.initDb((err, mongodb) => {
         console.log(`Connected to DB and listening on ${PORT}`);
       });
     }
-  });
+});

@@ -9,19 +9,15 @@ POST http://localhost:3000/palettes
 Content-Type: application/json
 
 {
-  "title": "Hip Swampy",
-  "description": "Get down and dirty but also fresh and clean? ",
+  "title": "Shimmer Sunset",
+  "description": " ",
   "colors": [
-    "#a49e8d",
-    "#504135",
-    "#689689",
-    "#b2e6d4",
-    "#83e8ba"
+    	"#ee5d6c",
+      "#ce4993",
+      "#6a0d83"
   ],
   "tags": [
-    "minimalist",
-    "neutral",
-    "simple"
+
   ],
   "date_created": "2024-05-20",
   "date_modified": "2024-05-20",
@@ -29,23 +25,20 @@ Content-Type: application/json
 }
 ###
 //update 
-PUT http://localhost:3000/palettes/664f93086a555f9ee7350da4
+PUT http://localhost:3000/palettes/665a1650aa736d3b6d344801
 Content-Type: application/json
 
 {
-  "title": "Hip Swamp extra",
-  "description": "Get down and dirty but also fresh and clean? ",
+  "title": "Shimmer Sunset",
+  "description": " ",
   "colors": [
-    "#a49e8d",
-    "#504135",
-    "#689689",
-    "#b2e6d4",
-    "#83e8ba"
+    	"#ee5d6c",
+      "#ce4993",
+      "#6a0d83", 
+      "#fb9062"
   ],
   "tags": [
-    "minimalist",
-    "neutral",
-    "simple"
+
   ],
   "date_created": "2024-05-20",
   "date_modified": "2024-05-20",
