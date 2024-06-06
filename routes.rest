@@ -48,6 +48,35 @@ Content-Type: application/json
 //delete
 DELETE http://localhost:3000/palettes/664f93086a555f9ee7350da4
 ###
+
+# Register a new user
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "John smith",
+  "email": "johnsmith@example.com",
+  "password": "password123"
+}
+
+###
+
+# Login with the registered user
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+# Logout the authenticated user
+GET http://localhost:3000/auth/logout
+
+
+
 // ********* RENDER LINKS ********* //
 
 //get all

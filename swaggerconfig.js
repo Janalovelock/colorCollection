@@ -13,7 +13,11 @@ const doc = {
 };
 
 const outputFile = './swagger_output.json';
-const endpointsFiles = ['./routes/index.js']; // Update with the path to your routes file(s)
+const endpointsFiles = [
+  './routes/index.js',
+
+
+]; // Update with the path to your routes file(s)
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
   require('./server.js'); // Update with the path to your server file

@@ -2,6 +2,7 @@
 const express = require("express");
 const { body, param } = require("express-validator");
 const router = express.Router();
+const auth = require('../middleware/auth');
 const paletteController = require("../controllers/paletteController");
 
 // Custom validator for hex color
@@ -26,10 +27,10 @@ const idValidationRules = [
     param('id').isMongoId().withMessage('Invalid ID format')
 ];
 
-router.get("/", paletteController.getAll);
-router.get("/:id", idValidationRules, paletteController.getSingle);
-router.post("/", paletteValidationRules, paletteController.create);
-router.put("/:id", [...idValidationRules, ...paletteValidationRules], paletteController.update);
-router.delete("/:id", idValidationRules, paletteController.deletePalette);
+router.get("/", auth, paletteController.getAll);
+router.get("/:id", auth, idValidationRules, paletteController.getSingle);
+router.post("/", auth, paletteValidationRules, paletteController.create);
+router.put("/:id", auth, [...idValidationRules, ...paletteValidationRules], paletteController.update);
+router.delete("/:id", auth, idValidationRules, paletteController.deletePalette);
 
 module.exports = router;
