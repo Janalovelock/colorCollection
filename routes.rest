@@ -135,3 +135,30 @@ Content-Type: application/json
 ###
 //delete
 DELETE https://colorcollection.onrender.com/palettes/664ebeb0ed6712f41c7a7245
+###
+
+# Register a new user
+POST https://colorcollection.onrender.com/auth/register
+Content-Type: application/json
+
+{
+  "name": "John smith",
+  "email": "johnsmith@example.com",
+  "password": "password123"
+}
+
+###
+
+# Login with the registered user
+POST https://colorcollection.onrender.com/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+# Logout the authenticated user
+GET https://colorcollection.onrender.com/auth/logout
