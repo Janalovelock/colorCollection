@@ -163,3 +163,6 @@ Content-Type: application/json
 
 # Logout the authenticated user
 GET https://colorcollection.onrender.com/auth/logout
+###
+# Initiate Google OAuth flow
+GET https://colorcollection.onrender.com/auth/google/login
