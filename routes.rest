@@ -74,11 +74,12 @@ Content-Type: application/json
 
 # Logout the authenticated user
 GET http://localhost:3000/auth/logout
-
-
+###
+# Initiate Google OAuth flow
+GET http://localhost:3000/auth/google/login
 
 // ********* RENDER LINKS ********* //
-
+###
 //get all
 GET https://colorcollection.onrender.com/palettes
 ###
