@@ -1,16 +1,14 @@
 const express = require('express');
 const passport = require('passport');
-const { registerUser, loginUser, logoutUser, loginValidation } = require('../controllers/userController');
+const { registerUser, loginUser, logoutUser, loginValidation, updateCredentials } = require('../controllers/userController');
+const auth = require('../middleware/auth');  
 const router = express.Router();
 
-// Register a new user with email/password
 router.post('/register', registerUser);
-
-// Login with email/password
 router.post('/login', loginValidation, loginUser);
-
-// Logout the user
 router.get('/logout', logoutUser);
+router.put('/update', auth, passport.authenticate('local'), updateCredentials);
+
 
 // Initiate Google OAuth flow for registration
 router.get('/google/register', passport.authenticate('google', { scope: ['profile', 'email'] }));
