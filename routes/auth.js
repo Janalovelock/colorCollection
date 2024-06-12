@@ -1,13 +1,15 @@
 const express = require('express');
 const passport = require('passport');
-const { registerUser, loginUser, logoutUser, loginValidation, updateCredentials } = require('../controllers/userController');
+const { registerUser, loginUser, logoutUser, loginValidation, updateCredentials, deleteUser } = require('../controllers/userController');
 const auth = require('../middleware/auth');  
+const adminAuth = require('../middleware/adminAuth');
 const router = express.Router();
 
 router.post('/register', registerUser);
 router.post('/login', loginValidation, loginUser);
 router.get('/logout', logoutUser);
 router.put('/update', auth, passport.authenticate('local'), updateCredentials);
+router.delete('/user/:id', auth, adminAuth, deleteUser); // Implement the route to delete a user
 
 
 // Initiate Google OAuth flow for registration

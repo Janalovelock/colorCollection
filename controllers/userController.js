@@ -2,6 +2,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../models/userModel');
 const { body, validationResult } = require('express-validator');
+const { getDb } = require('../db/connect'); // Import the getDb function
+const { ObjectId } = require('mongodb');
+
+
 
 exports.loginValidation = [
   body('email').isEmail().withMessage('Please provide a valid email address'),
@@ -9,7 +13,7 @@ exports.loginValidation = [
 ];
 
 exports.registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, accountType } = req.body; // Include accountType from request body
     try {
         let user = await User.findOne({ email });
         if (user) {
@@ -19,7 +23,8 @@ exports.registerUser = async (req, res) => {
         user = new User({
             name,
             email,
-            password
+            password,
+            accountType // Add accountType to user object
         });
 
         await user.save();
@@ -100,6 +105,27 @@ exports.updateCredentials = async (req, res) => {
         await user.save();
 
         res.status(200).json({ message: 'Credentials updated successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+};
+exports.deleteUser = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const db = getDb();
+        const usersCollection = db.collection('users');
+        
+        // Check if the user exists
+        const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Delete the user
+        await usersCollection.deleteOne({ _id: new ObjectId(userId) });
+
+        res.status(200).json({ message: 'User deleted successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');

@@ -8,6 +8,8 @@ class User {
         this.email = data.email;
         this.password = data.password;
         this.googleId = data.googleId || null;
+        this.accountType = data.accountType || 'normal';
+        this.isAdmin = data.isAdmin || false; // Default to false if not provided
     }
 
     async save() {
